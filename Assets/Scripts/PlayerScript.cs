@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
 
     private float speed = 5.0f;
+    private int hp = 100;
 
     // Use this for initialization
     private void Awake()
