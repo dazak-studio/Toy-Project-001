@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour {
 
     private float speed = 5.0f;
     private int hp = 100;
+    private bool isEnemyHovered = false;
     public Text myHPText;
 
     public Texture2D cursorTexture;
@@ -35,24 +36,25 @@ public class PlayerScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        // change mouse pointer texture and a flag when hovered on enemy
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100.0f))
+        if (Physics.Raycast(ray, out hit, 100.0f) && hit.transform.name == "EnemyCube")
         {
-            if(hit.transform.name == "EnemyCube")
-            {
-                Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-            }
-            else
-            {
-                Cursor.SetCursor(null, Vector2.zero, cursorMode);
-            }
+            isEnemyHovered = true;
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         }
         else
         {
+            isEnemyHovered = false;
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
 
+        if(Input.GetMouseButtonDown(0) && isEnemyHovered)
+        {
+            Debug.Log("Enemy Clicked!");
+        }
     }
 
     public void DecreaseHP()
