@@ -22,5 +22,5 @@ public abstract class CubeController : MonoBehaviour
 	#endregion
 
 	/* public methods */
-	public abstract void Shoot();
+	public abstract void Shoot(Vector3 shootPoint);
 }
