@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 2814252}
   - component: {fileID: 2814251}
   - component: {fileID: 2814250}
+  - component: {fileID: 2814254}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -194,6 +195,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2814254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2814249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b2af21a53f6454fa0b4219c81fa421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FocusObjectTransform: {fileID: 571415524}
 --- !u!1 &339457568
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,12 +287,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 339457568}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516038920
 GameObject:
@@ -474,7 +487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &571415525
 Rigidbody:
@@ -502,6 +515,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8f6847746c1bb42bc7497f8dda0137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShootCooldown: 0
+  BulletPrefab: {fileID: 1026290925802950, guid: d71e63fcae5882a4a9285a83eb15c567,
+    type: 2}
+  _mainCamera: {fileID: 2814252}
   _forwardSpeed: 7
   _backwardSpeed: 3
   _rotateSpeed: 5
@@ -983,7 +1000,7 @@ Transform:
   - {fileID: 516038921}
   - {fileID: 1475424983}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129654533
 GameObject:

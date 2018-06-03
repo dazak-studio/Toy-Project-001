@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
         if (Duration > Mathf.Epsilon)
             Duration -= Time.fixedDeltaTime;
         else
-            Destroy(this);
+            Destroy(gameObject);
     }
 
     #endregion
