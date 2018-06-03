@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerScript : MonoBehaviour {
 
     private float speed = 5.0f;
     private int hp = 100;
+    public Text myHPText;
 
     // Use this for initialization
     private void Awake()
@@ -29,4 +32,14 @@ public class PlayerScript : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public void DecreaseHP()
+    {
+        hp -= 50;
+        myHPText.text = "My HP : " + hp;
+        if(hp <= 0)
+        {
+            // die
+        }
+    }
 }
