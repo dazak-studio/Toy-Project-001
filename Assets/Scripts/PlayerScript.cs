@@ -10,6 +10,11 @@ public class PlayerScript : MonoBehaviour {
     private int hp = 100;
     public Text myHPText;
 
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
+
     // Use this for initialization
     private void Awake()
     {
@@ -30,8 +35,25 @@ public class PlayerScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            if(hit.transform.name == "EnemyCube")
+            {
+                Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            }
+            else
+            {
+                Cursor.SetCursor(null, Vector2.zero, cursorMode);
+            }
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        }
+
+    }
 
     public void DecreaseHP()
     {
