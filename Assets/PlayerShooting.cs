@@ -24,6 +24,7 @@ public class PlayerShooting : MonoBehaviour
 			var bulletLength = 1.35f;
 			Vector3 bulletInit = new Vector3( (float)Math.Sin(angle)* bulletLength, 0.5f, (float)Math.Cos(angle) * bulletLength);
 
+			//Euler angle is the normal angle vectors which is used in UI
 			Quaternion roation_bullet = Quaternion.Euler(90, angleDeg, 0);
 		
 			//Rotation Error
