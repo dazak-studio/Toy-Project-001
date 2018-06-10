@@ -30,6 +30,7 @@ public class EnemyScript : MonoBehaviour {
         if(hp <= 0)
         {
             // die
+            Destroy(this.gameObject);
         }
     }
 }

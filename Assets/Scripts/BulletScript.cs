@@ -26,4 +26,13 @@ public class BulletScript : MonoBehaviour {
     {
         this.direction = direction;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "EnemyCube")
+        {
+            other.GetComponentInParent<EnemyScript>().DecreaseHP();
+            Destroy(this.gameObject);
+        }
+    }
 }
