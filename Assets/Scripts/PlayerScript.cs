@@ -15,6 +15,9 @@ public class PlayerScript : MonoBehaviour {
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    public GameObject bullet;
+
+    private Transform hoveredEnemyTransform;
 
     // Use this for initialization
     private void Awake()
@@ -44,6 +47,7 @@ public class PlayerScript : MonoBehaviour {
         {
             isEnemyHovered = true;
             Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            hoveredEnemyTransform = hit.transform;
         }
         else
         {
@@ -53,7 +57,7 @@ public class PlayerScript : MonoBehaviour {
 
         if(Input.GetMouseButtonDown(0) && isEnemyHovered)
         {
-            Debug.Log("Enemy Clicked!");
+            Shoot();
         }
     }
 
@@ -65,5 +69,14 @@ public class PlayerScript : MonoBehaviour {
         {
             // die
         }
+    }
+
+    private void Shoot()
+    {
+        Vector3 direction = (hoveredEnemyTransform.position - this.transform.position).normalized;
+        GameObject newBullet = Instantiate(bullet, 
+            this.transform.position + direction * 1.5f, 
+            Quaternion.identity);
+        newBullet.GetComponent<BulletScript>().Init(direction);
     }
 }
