@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : CubeController {
 
-	private bool IsLeftMouseClicked { get { return Input.GetMouseButtonDown(0); } }
+	private static bool IsLeftMouseClicked { get { return Input.GetMouseButtonDown(0); } }
 
 	[SerializeField] private Camera _mainCamera;
 	[SerializeField] private float _forwardSpeed;
@@ -39,8 +38,8 @@ public class PlayerController : CubeController {
 		{
 			velocity *= _backwardSpeed;
 		}
-
-		_transform.localPosition += velocity * Time.fixedDeltaTime;
+		
+		_transform.localPosition += velocity * Time.fixedDeltaTime;		
 		
 		/* rotate */
 		_transform.Rotate(0, horizontal * _rotateSpeed, 0);
@@ -58,25 +57,24 @@ public class PlayerController : CubeController {
 	{
 		if (!IsShootable) return;
 		
-		ShootCooldownLeft = ShootCooldown;
-
-		shootPoint.y = _transform.position.y;
+		ShootCooldownLeft = ShootCooldown;				
+		shootPoint.y = 0;		
 		var shootPointNorm = shootPoint.normalized;
-		var initialPointForBullet = _transform.TransformDirection(shootPointNorm);				
-		var dy = initialPointForBullet.y - _transform.position.y;
-		var dx = initialPointForBullet.x - _transform.position.x;
-		var rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
-		var bullet = Instantiate(BulletPrefab, initialPointForBullet, Quaternion.identity);
+		var initialPointForBullet = _transform.position + shootPointNorm;
+		initialPointForBullet.y = _transform.position.y;
+		var dz = shootPointNorm.z;
+		var dx = shootPointNorm.x;
+		var rotateDegree = Mathf.Atan2(dz, dx) * Mathf.Rad2Deg;
+		var bullet = Instantiate(BulletPrefab, initialPointForBullet, Quaternion.identity);	
 		var bulletController = bullet.GetComponent<BulletController>();
 			
 		bulletController.SetTrigger(shootPointNorm, rotateDegree);
 	}
 
 	private void OnClicked()
-	{
-		var worldPointFromMousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-		print(worldPointFromMousePosition);
-		
-		Shoot(worldPointFromMousePosition);
-	}
-}
+ 	{
+		var mousePos = Input.mousePosition + Vector3.forward * 10;		
+		var worldPointFromMousePosition = _mainCamera.ScreenToWorldPoint(mousePos);
+		Shoot(worldPointFromMousePosition - _transform.position);
+ 	}
+ }

@@ -24,7 +24,6 @@ public class BulletController : MonoBehaviour
         else
             Destroy(gameObject);
     }
-
     #endregion
 
     public void SetTrigger(Vector3 shootPointNorm, float rotateDegree)
