@@ -31,7 +31,7 @@ public class BulletScript : MonoBehaviour {
     {
         if(other.name == "EnemyCube")
         {
-            other.GetComponentInParent<EnemyScript>().DecreaseHP();
+            other.GetComponentInParent<EnemyScript>().HitByBullet(direction);
             Destroy(this.gameObject);
         }
     }

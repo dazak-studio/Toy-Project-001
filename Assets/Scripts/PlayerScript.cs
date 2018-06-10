@@ -32,8 +32,8 @@ public class PlayerScript : MonoBehaviour {
     private void FixedUpdate()
     {
         this.transform.position += new Vector3(
-            Input.GetAxis("Horizontal") * Time.deltaTime * speed, 
-            0.0f, 
+            Input.GetAxis("Horizontal") * Time.deltaTime * speed,
+            0.0f,
             Input.GetAxis("Vertical") * Time.deltaTime * speed);
     }
 
