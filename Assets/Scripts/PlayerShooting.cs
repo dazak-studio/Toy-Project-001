@@ -21,7 +21,7 @@ public class PlayerShooting : MonoBehaviour
 		{
 			var angleDeg = transform.rotation.eulerAngles.y;
 			var angle = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
-			var bulletLength = 1.35f;
+			var bulletLength = 2f;
 			Vector3 bulletInit = new Vector3( (float)Math.Sin(angle)* bulletLength, 0f,(float)Math.Cos(angle) * bulletLength);
 
 			//Euler angle is the normal angle vectors which is used in UI

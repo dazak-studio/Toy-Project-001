@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour {
 	void Start ()
 	{
 		Instantiate(enemy, new Vector3(4f, 0, 4f), new Quaternion(0,10,0,0));
-
+		
 	}
 	
 	// Update is called once per frame

@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
 
 
 	public float Speed = 6f;
+	private float max_health = 100;
+	public float health;
+
+	public Slider healthBar;
+	
+	
 
 	private Vector3 _movement;
 	private Rigidbody _playerRigidbody;
@@ -16,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Awake()
 	{
+		health = max_health;
 		_floorMask = LayerMask.GetMask("Floor");
 		_playerRigidbody = GetComponent<Rigidbody>();
 	}
@@ -27,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 		var v = Input.GetAxisRaw("Vertical");
 		Move(h,v);
 		Turning();
+		healthBar.value = health / max_health;
 	}
 
 	void Move(float h, float v)
