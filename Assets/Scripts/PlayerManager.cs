@@ -35,6 +35,10 @@ public class PlayerManager : MonoBehaviour
 		Move(h,v);
 		Turning();
 		healthBar.value = health / max_health;
+		if (health < 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
 	void Move(float h, float v)

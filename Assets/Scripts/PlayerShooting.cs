@@ -27,8 +27,6 @@ public class PlayerShooting : MonoBehaviour
 			//Euler angle is the normal angle vectors which is used in UI
 			Quaternion roation_bullet = Quaternion.Euler(90, angleDeg, 0);
 
-			Debug.Log(bulletInit);
-
 			//Rotation Error
 			Instantiate(Bullet, transform.position+bulletInit, roation_bullet);
 		}	
