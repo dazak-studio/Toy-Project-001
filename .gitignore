@@ -1,4 +1,4 @@
-/[Ll]ibrary/
+/game/[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
@@ -39,3 +39,5 @@ sysinfo.txt
 *.unitypackage
 *.DS_Store
 /.idea/
+
+/game/Temp/
