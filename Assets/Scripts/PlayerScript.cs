@@ -16,13 +16,15 @@ public class PlayerScript : MonoBehaviour {
     public Vector2 hotSpot = Vector2.zero;
 
     public GameObject bullet;
+    public GameObject cameraRoot;
 
+    private CameraScript cameraScript;
     private Transform hoveredEnemyTransform;
 
     // Use this for initialization
     private void Awake()
     {
-        
+        cameraScript = cameraRoot.GetComponent<CameraScript>();
     }
 
     void Start () {
@@ -35,6 +37,7 @@ public class PlayerScript : MonoBehaviour {
             Input.GetAxis("Horizontal") * Time.deltaTime * speed,
             0.0f,
             Input.GetAxis("Vertical") * Time.deltaTime * speed);
+        cameraRoot.transform.position = this.transform.position;
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class PlayerScript : MonoBehaviour {
         if(Input.GetMouseButtonDown(0) && isEnemyHovered)
         {
             Shoot();
+            cameraScript.Shake();
         }
     }
 
